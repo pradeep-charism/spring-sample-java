@@ -1,7 +1,9 @@
 package com.charism;
 
+import com.charism.config.AppConfig;
 import com.charism.model.Customer;
 import com.charism.service.CustomerService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
  */
 public class Application {
 
-    private static ClassPathXmlApplicationContext context;
+    private static AnnotationConfigApplicationContext context;
 
     public static void main(String[] args) {
         try{
@@ -24,11 +26,9 @@ public class Application {
             context.close();
             context.destroy();
         }
-
     }
 
     private static void setup() {
-        context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        context.refresh();
+        context = new AnnotationConfigApplicationContext(AppConfig.class);
     }
 }
