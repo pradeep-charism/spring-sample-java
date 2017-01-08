@@ -20,12 +20,19 @@ public class Application {
             setup();
             CustomerService customerService = context.getBean("customerService", CustomerService.class);
             System.out.println(customerService.findAll());
+            printBeanScope();
+
         }catch (Exception ex){
             ex.printStackTrace();
         }finally {
             context.close();
             context.destroy();
         }
+    }
+
+    private static void printBeanScope() {
+        System.out.println(context.getBean("customerService", CustomerService.class));
+        System.out.println(context.getBean("customerService", CustomerService.class));
     }
 
     private static void setup() {
